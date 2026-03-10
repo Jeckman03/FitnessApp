@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitnessApp.Views.CreateNewUserPage"
+             Title="CreateNewUserPage">
+    <VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Name" />
+            <Entry Placeholder="John Doe" />
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout>
+            <Label Text="Date of Birth" />
+            <DatePicker/>
+        </HorizontalStackLayout>
+        
+        <StackLayout Padding="20">
+            <Label Text="Gender" />
+            <RadioButton Content="Male" IsChecked="True" />
+            <RadioButton Content="Female" />
+        </StackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Height" />
+            <Entry Placeholder="Feet" Keyboard="Numeric" />
+            <Entry Placeholder="Inches" Keyboard="Numeric" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Weight" />
+            <Entry Placeholder="180" Keyboard="Numeric" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Waist" />
+            <Entry Placeholder="32" Keyboard="Numeric" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Activity Level" />
+            <Picker Title="Select Activity Level"
+                    HorizontalOptions="Fill"
+                    Margin="10">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Very Active</x:String>
+                        <x:String>Active</x:String>
+                        <x:String>Moderate</x:String>
+                        <x:String>Light</x:String>
+                        <x:String>Sedentary</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Goal" />
+            <Picker Title="Primary Goal"
+                    HorizontalOptions="Fill"
+                    Margin="10">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Lose Weight</x:String>
+                        <x:String>Maintain Weight</x:String>
+                        <x:String>Gain Weight</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </HorizontalStackLayout>
+
+        <Button Text="Submit" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DataAccessLibrary/DataAccessLibrary.csproj" />
+  <Project Path="FitnessApp/FitnessApp.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="FitnessAppLibrary/FitnessAppLibrary.csproj" Id="05573b46-c15b-4aef-9d22-783b31badc10" />
+</Solution>

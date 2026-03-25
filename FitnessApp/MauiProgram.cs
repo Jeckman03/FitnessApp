@@ -39,6 +39,7 @@ namespace FitnessApp
 
             // Services
 
+
             return builder.Build();
         }
     }

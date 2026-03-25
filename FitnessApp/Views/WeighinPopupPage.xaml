@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"             
-             x:Class="FitnessApp.Views.WeighinPopupPage"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"  
+               xmlns:viewModels="clr-namespace:FitnessApp.ViewModels"
+               x:Class="FitnessApp.Views.WeighinPopupPage"
+               x:DataType="viewModels:WeighinPopupViewModel"
                WidthRequest="300">
+    
     <VerticalStackLayout VerticalOptions="Center" 
                          HorizontalOptions="Center">
         <Label HorizontalTextAlignment="Center"
                Text="Weight" />
-        <Entry x:Name="{Binding currentWeight}"
+        <Entry Text="{Binding CurrentWeight}"
                Keyboard="Numeric"/>
 
         <Label Text="Waist"
                HorizontalTextAlignment="Center"/>
-        <Entry x:Name="{Binding currentWaist}"
+        <Entry Text="{Binding CurrentWaist}"
                Keyboard="Numeric" />
 
         <Label Text="Met Macros"
@@ -26,7 +29,7 @@
         </HorizontalStackLayout>
 
         <Button Text="Submit"
-                Command="{Binding OnSubmitCommand}"/>
+                Command="{Binding SaveCommand}"/>
 
     </VerticalStackLayout>
 </toolkit:Popup>

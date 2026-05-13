@@ -10,4 +10,8 @@
     <Folder Include="Sqllite\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FitnessAppLibrary\FitnessAppLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

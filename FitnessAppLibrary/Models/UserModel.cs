@@ -8,11 +8,28 @@ namespace FitnessAppLibrary.Models
     {
         public string Name { get; set; }
         public DateOnly DateOfBirth { get; set; }
-        public int HeightFeet { get; set; }
-        public int HeightInches { get; set; }
+        public int HeightInches { get; set;  }
         public Gender Gender { get; set; }
-        public string ActivityLevel { get; set; }
-        public string Goal { get; set; }
+        public ActivityLvl ActivityLevel { get; set; }
+
+
+        //private void CalculateAge()
+        //{
+        //    var userYearBorn = DateOfBirth.Year;
+        //    var thisYear = DateTime.Now.Year;
+        //    Age = thisYear - userYearBorn;
+        //}
+
+        //private void CalculateTotalInches()
+        //{
+        //    var inchesFromFeet = HeightFeet * 12;
+        //    TotalInches = inchesFromFeet + HeightInches;
+        //}
+    }
+
+    public enum ActivityLvl
+    {
+        Sedentary, LightlyActive, ModeratleyActive, VeryActive, ExtraActive
     }
 
     public enum Gender

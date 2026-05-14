@@ -73,6 +73,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj" />
+	  <ProjectReference Include="..\FitnessAppLibrary\FitnessAppLibrary.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\CreateNewUserPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

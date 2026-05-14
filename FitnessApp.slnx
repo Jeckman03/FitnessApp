@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="DataAccessLibrary/DataAccessLibrary.csproj" />
+  <Project Path="FitnessApp.Tests/FitnessApp.Tests.csproj" Id="0460ed46-8ee6-435c-835a-d41eaf27da8e" />
   <Project Path="FitnessApp/FitnessApp.csproj">
     <Deploy Solution="Debug|*" />
   </Project>

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using DataAccessLibrary.Helper;
 using DataAccessLibrary.Services;
 using DataAccessLibrary.Sqllite;
 using FitnessApp.ViewModels;
@@ -48,6 +49,8 @@ namespace FitnessApp
             builder.Services.AddSingleton<SqLiteDataAccess>(s => new SqLiteDataAccess(connectionString));
             builder.Services.AddSingleton<IUserProfileService, UserProfileServices>();
 
+            // Helper
+            Dapper.SqlMapper.AddTypeHandler(new DateOnlyTypeHelper());
 
             var app = builder.Build();
 

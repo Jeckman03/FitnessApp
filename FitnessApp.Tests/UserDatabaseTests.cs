@@ -13,6 +13,14 @@ namespace FitnessApp.Tests
         private const string TestDbName = "TestFitness.db";
         private string _connectionString = $"Data Source={TestDbName}";
 
+        public void Dispose()
+        {
+            if (File.Exists(TestDbName))
+            {
+                File.Delete(TestDbName);
+            }
+        }
+
         [Fact]
         public async Task SaveUser_ShouldReadBackCorrectData()
         {
@@ -21,6 +29,7 @@ namespace FitnessApp.Tests
 
             var testUser = new UserModel
             {
+                Id = 1,
                 Name = "Jeffrey",
                 DateOfBirth = new DateOnly(1984, 03, 20),
                 Gender = Gender.Male,

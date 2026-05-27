@@ -1,13 +1,17 @@
 ﻿using CommunityToolkit.Maui;
+using DataAccessLibrary.Helper;
+using DataAccessLibrary.Services;
+using DataAccessLibrary.Sqllite;
 using FitnessApp.ViewModels;
 using FitnessApp.Views;
+using FitnessAppLibrary.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace FitnessApp
 {
     public static class MauiProgram
     {
-        public static MauiApp CreateMauiApp()
+        public static async Task<MauiApp> CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
             builder
@@ -21,6 +25,7 @@ namespace FitnessApp
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
 #endif
 
             // Views
@@ -40,9 +45,24 @@ namespace FitnessApp
             builder.Services.AddTransient<LoginViewModel>();
 
             // Services
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "FitnessTracker.db3");
+            string connectionString = $"Data Source={dbPath}";
 
+            builder.Services.AddSingleton<SqLiteDataAccess>(s => new SqLiteDataAccess(connectionString));
+            builder.Services.AddSingleton<IUserProfileService, UserProfileServices>();
 
-            return builder.Build();
+            // Helper
+            Dapper.SqlMapper.AddTypeHandler(new DateOnlyTypeHelper());
+
+            var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var dataAccess = scope.ServiceProvider.GetRequiredService<SqLiteDataAccess>();
+                await dataAccess.InitializeDatabase();
+            }
+
+            return app;
         }
     }
 }

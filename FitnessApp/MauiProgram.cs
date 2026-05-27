@@ -29,6 +29,7 @@ namespace FitnessApp
             builder.Services.AddTransient<HistoryPage>();
             builder.Services.AddTransient<WorkoutPage>();
             builder.Services.AddTransient<WeighinPopupPage>();
+            builder.Services.AddTransient<LoginPage>();
 
             // ViewModels
             builder.Services.AddTransient<MainPageViewModel>();
@@ -36,6 +37,7 @@ namespace FitnessApp
             builder.Services.AddTransient<HistoryViewModel>();
             builder.Services.AddTransient<WorkoutViewModel>();
             builder.Services.AddTransient<WeighinPopupViewModel>();
+            builder.Services.AddTransient<LoginViewModel>();
 
             // Services
 

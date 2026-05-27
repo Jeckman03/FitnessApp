@@ -7,6 +7,9 @@ namespace FitnessApp.ViewModels
 {
     public partial class BaseViewModel : ObservableObject
     {
-        public bool isBusy;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
+        private bool isBusy;
+        public bool IsNotBusy => !IsBusy;
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view="clr-namespace:FitnessApp.ViewModels"
+             x:DataType="view:LoginViewModel"
+             x:Class="FitnessApp.Views.LoginPage"
+             Title="LoginPage">
+    <Grid>
+        <VerticalStackLayout Spacing="25" 
+                         Padding="30" 
+                         VerticalOptions="Center">
+
+            <Image Source="dotnet_bot.png"
+               HeightRequest="120"
+               WidthRequest="120"
+               HorizontalOptions="Center" />
+
+            <Label Text="Welcome Back"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource Primary}" />
+
+            <Entry Placeholder="Enter your password"
+               Text="{Binding Password}"
+               IsPassword="True"
+               HeightRequest="50"
+               Keyboard="Text">
+            </Entry>
+            <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               FontSize="14"
+               HorizontalOptions="Center"
+               IsVisible="{Binding HasError}" />
+
+            <Button Text="Unlock Journal"
+                Command="{Binding UnlockCommand}"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                HeightRequest="55"
+                CornerRadius="10"
+                FontSize="18"
+                FontAttributes="Bold" />
+
+            <Label Text="Forgot Password?"
+               TextColor="Gray"
+               FontSize="Small"
+               TextDecorations="Underline"
+               HorizontalOptions="Center"
+               Margin="0,20,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Text="Reset Journal"
+               TextColor="Gray"
+               FontSize="Small"
+               TextDecorations="Underline"
+               HorizontalOptions="Center"
+               Margin="0,20,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ResetCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       Color="{StaticResource Primary}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Scale="2" />
+    </Grid>
+</ContentPage>

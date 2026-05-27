@@ -7,10 +7,11 @@ using System.Data.Common;
 using System.Text;
 using Dapper;
 using DataAccessLibrary.SqlStatements;
+using FitnessAppLibrary.Services.Interfaces;
 
 namespace DataAccessLibrary.Sqllite
 {
-    public class SqLiteDataAccess
+    public class SqLiteDataAccess : IDataAccess
     {
         private readonly string _connectionString;
 
@@ -25,13 +26,13 @@ namespace DataAccessLibrary.Sqllite
             await connection.ExecuteAsync(DatabaseSql.CreateTables);
         }
 
-        public async Task<IEnumerable<T>> LoadData<T, U>(string sql, U parameters)
+        public async Task<IEnumerable<T>> LoadDataAsync<T, U>(string sql, U parameters)
         {
             using IDbConnection connection = new SqliteConnection(_connectionString);
             return await connection.QueryAsync<T>(sql, parameters);
         }
 
-        public async Task SaveData<T>(string sql, T parameters)
+        public async Task SaveDataAsync<T>(string sql, T parameters)
         {
             using IDbConnection connection = new SqliteConnection(_connectionString);
             await connection.ExecuteAsync(sql, parameters);

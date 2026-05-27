@@ -48,7 +48,7 @@ namespace FitnessApp
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "FitnessTracker.db3");
             string connectionString = $"Data Source={dbPath}";
 
-            builder.Services.AddSingleton<SqLiteDataAccess>(s => new SqLiteDataAccess(connectionString));
+            builder.Services.AddSingleton<IDataAccess>(s => new SqLiteDataAccess(connectionString));
             builder.Services.AddSingleton<IUserProfileService, UserProfileServices>();
 
             // Helper

@@ -4,9 +4,10 @@ using FitnessAppLibrary.Models;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
-namespace FitnessApp.Tests
+namespace FitnessApp.Tests.IntergrationTests
 {
     public class UserDatabaseTests
     {
@@ -46,6 +47,8 @@ namespace FitnessApp.Tests
             Assert.NotNull(result);
             Assert.Equal(testUser.Name, result.Name);
             Assert.Equal(37, result.HeightInches);
+            Assert.Equal(testUser.DateOfBirth, result.DateOfBirth);
+            Assert.Equal(testUser.ActivityLevel, result.ActivityLevel);
         }
     }
 }

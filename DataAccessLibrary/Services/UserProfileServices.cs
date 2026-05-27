@@ -10,21 +10,21 @@ namespace DataAccessLibrary.Services
 {
     public class UserProfileServices : IUserProfileService
     {
-        private readonly SqLiteDataAccess _db;
+        private readonly  IDataAccess _db;
 
-        public UserProfileServices(SqLiteDataAccess db)
+        public UserProfileServices(IDataAccess db)
         {
             _db = db;
         }
 
         public async Task SaveUserAsync(UserModel user)
         {
-            await _db.SaveData<UserModel>(UserSqlStatements.SaveUser, user);
+            await _db.SaveDataAsync<UserModel>(UserSqlStatements.SaveUser, user);
         }
 
         public async Task<UserModel> GetUserAsync(int id)
         {
-            var results = await _db.LoadData<UserModel, object>(UserSqlStatements.GetUserInfo, new { Id = id });
+            var results = await _db.LoadDataAsync<UserModel, object>(UserSqlStatements.GetUserInfo, new { Id = id });
             return results.FirstOrDefault();
         }
     }

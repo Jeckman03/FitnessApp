@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using Moq;
-using FitnessAppLibrary.Services.Interfaces;
 using FitnessAppLibrary.Models;
 using DataAccessLibrary.Services;
+using FitnessAppLibrary.Services.Interfaces.DataAccess;
 
 namespace FitnessApp.Tests.UnitTests
 {
@@ -28,7 +28,7 @@ namespace FitnessApp.Tests.UnitTests
                 It.IsAny<object>()))
                 .ReturnsAsync(new List<UserModel> { expectedUser });
 
-            var userService = new UserProfileServices(mockDb.Object);
+            var userService = new UserDataAccess(mockDb.Object);
 
             var actualUser = await userService.GetUserAsync(1);
 

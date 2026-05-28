@@ -38,7 +38,7 @@ namespace FitnessApp.Tests.IntergrationTests
                 HeightInches = 37
             };
 
-            UserProfileServices userProfile = new(dataAccess);
+            UserDataAccess userProfile = new(dataAccess);
 
             await userProfile.SaveUserAsync(testUser);
             var result = await userProfile.GetUserAsync(testUser.Id);

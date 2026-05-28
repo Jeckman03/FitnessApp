@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FitnessAppLibrary.Services.Interfaces
+namespace FitnessAppLibrary.Services.Interfaces.DataAccess
 {
     public interface IDataAccess
     {

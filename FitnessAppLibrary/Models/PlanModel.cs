@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessAppLibrary.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,8 +12,4 @@ namespace FitnessAppLibrary.Models
         public Goals Goal { get; set; }
     }
 
-    public enum Goals
-    {
-        Cut, Maintain, Reverse, Bulk
-    }
 }

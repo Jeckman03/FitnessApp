@@ -7,7 +7,7 @@ using System.Data.Common;
 using System.Text;
 using Dapper;
 using DataAccessLibrary.SqlStatements;
-using FitnessAppLibrary.Services.Interfaces;
+using FitnessAppLibrary.Services.Interfaces.DataAccess;
 
 namespace DataAccessLibrary.Sqllite
 {

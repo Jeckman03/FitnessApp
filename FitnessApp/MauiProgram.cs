@@ -4,7 +4,9 @@ using DataAccessLibrary.Services;
 using DataAccessLibrary.Sqllite;
 using FitnessApp.ViewModels;
 using FitnessApp.Views;
+using FitnessAppLibrary.Services.HelperServices;
 using FitnessAppLibrary.Services.Interfaces;
+using FitnessAppLibrary.Services.Interfaces.DataAccess;
 using Microsoft.Extensions.Logging;
 
 namespace FitnessApp
@@ -27,6 +29,9 @@ namespace FitnessApp
     		builder.Logging.AddDebug();
 
 #endif
+            // DB
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "FitnessTracker.db3");
+            string connectionString = $"Data Source={dbPath}";
 
             // Views
             builder.Services.AddTransient<MainPage>();
@@ -45,11 +50,15 @@ namespace FitnessApp
             builder.Services.AddTransient<LoginViewModel>();
 
             // Services
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "FitnessTracker.db3");
-            string connectionString = $"Data Source={dbPath}";
-
             builder.Services.AddSingleton<IDataAccess>(s => new SqLiteDataAccess(connectionString));
-            builder.Services.AddSingleton<IUserProfileService, UserProfileServices>();
+            builder.Services.AddSingleton<IUserDataAccess, UserDataAccess>();
+            builder.Services.AddTransient<IUserProfileService, UserProfileServices>();
+            builder.Services.AddTransient<IBodyMetricService, BodyMetricService>();
+            builder.Services.AddTransient<IUnitConversionSerivce, UnitConversionService>();
+            builder.Services.AddTransient<IMacroCalculatorService, MacroCalculatorService>();
+
+
+            // DB
 
             // Helper
             Dapper.SqlMapper.AddTypeHandler(new DateOnlyTypeHelper());

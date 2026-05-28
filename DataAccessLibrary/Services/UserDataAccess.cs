@@ -1,18 +1,18 @@
 ﻿using DataAccessLibrary.Sqllite;
 using DataAccessLibrary.SqlStatements;
 using FitnessAppLibrary.Models;
-using FitnessAppLibrary.Services.Interfaces;
+using FitnessAppLibrary.Services.Interfaces.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DataAccessLibrary.Services
 {
-    public class UserProfileServices : IUserProfileService
+    public class UserDataAccess : IUserDataAccess
     {
         private readonly  IDataAccess _db;
 
-        public UserProfileServices(IDataAccess db)
+        public UserDataAccess(IDataAccess db)
         {
             _db = db;
         }

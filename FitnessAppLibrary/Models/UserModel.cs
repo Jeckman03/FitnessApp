@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessAppLibrary.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,32 +9,27 @@ namespace FitnessAppLibrary.Models
     {
         public string Name { get; set; }
         public DateOnly DateOfBirth { get; set; }
-        public int HeightInches { get; set;  }
+        public int HeightInches { get; set; }
         public Gender Gender { get; set; }
         public ActivityLvl ActivityLevel { get; set; }
 
+        public int Age
+        {
+            get
+            {
+                var today = DateOnly.FromDateTime(DateTime.Now);
 
-        //private void CalculateAge()
-        //{
-        //    var userYearBorn = DateOfBirth.Year;
-        //    var thisYear = DateTime.Now.Year;
-        //    Age = thisYear - userYearBorn;
-        //}
+                int age = today.Year - DateOfBirth.Year;
 
-        //private void CalculateTotalInches()
-        //{
-        //    var inchesFromFeet = HeightFeet * 12;
-        //    TotalInches = inchesFromFeet + HeightInches;
-        //}
+                if (DateOfBirth > today.AddYears(-age))
+                {
+                    age--;
+                }
+
+                return age;
+            }
+        }
     }
 
-    public enum ActivityLvl
-    {
-        Sedentary, LightlyActive, ModeratleyActive, VeryActive, ExtraActive
-    }
-
-    public enum Gender
-    {
-        Male, Female
-    }
+    
 }

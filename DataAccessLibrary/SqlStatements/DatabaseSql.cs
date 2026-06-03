@@ -20,7 +20,8 @@ namespace DataAccessLibrary.SqlStatements
                 UserId Integer,
                 StartDate Text,
                 DurationDays Integer,
-                Goal Integer); 
+                Goal Integer,
+                CurrentCalorieTarget Integer); 
 
             Create Table if not Exists DailyLog (
                 Id Integer Primary Key AutoIncrement,

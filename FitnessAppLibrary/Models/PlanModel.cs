@@ -10,6 +10,7 @@ namespace FitnessAppLibrary.Models
         public int UserId { get; set; }
         public int DurationDays { get; set; }
         public Goals Goal { get; set; }
+        public int CurrentCalorieTarget { get; set; }
     }
 
 }

@@ -56,6 +56,9 @@ namespace FitnessApp
             builder.Services.AddTransient<IBodyMetricService, BodyMetricService>();
             builder.Services.AddTransient<IUnitConversionSerivce, UnitConversionService>();
             builder.Services.AddTransient<IMacroCalculatorService, MacroCalculatorService>();
+            builder.Services.AddTransient<ICheckinService, CheckinService>();
+            builder.Services.AddTransient<IDailyLogDataAccess, DailyLogDataAccess>();
+            builder.Services.AddTransient<IPlanDataAccess, PlanDataAccess>();
 
 
             // DB

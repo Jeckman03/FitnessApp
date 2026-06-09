@@ -50,7 +50,8 @@ namespace FitnessApp
             builder.Services.AddTransient<LoginViewModel>();
 
             // Services
-            builder.Services.AddSingleton<IDataAccess>(s => new SqLiteDataAccess(connectionString));
+            builder.Services.AddSingleton<SqLiteDataAccess>(s => new SqLiteDataAccess(connectionString));
+            builder.Services.AddSingleton<IDataAccess>(s => s.GetRequiredService<SqLiteDataAccess>());
             builder.Services.AddSingleton<IUserDataAccess, UserDataAccess>();
             builder.Services.AddTransient<IUserProfileService, UserProfileServices>();
             builder.Services.AddTransient<IBodyMetricService, BodyMetricService>();

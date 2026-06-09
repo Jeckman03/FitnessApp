@@ -1,74 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:viewModels="clr-namespace:FitnessApp.ViewModels"
              x:Class="FitnessApp.Views.CreateNewUserPage"
              Title="CreateNewUserPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout HorizontalOptions="Center">
         <HorizontalStackLayout>
             <Label Text="Name" />
-            <Entry Placeholder="John Doe" />
+            <Entry Text="{Binding UserName}" Placeholder="Enter Name" />
         </HorizontalStackLayout>
         
         <HorizontalStackLayout>
             <Label Text="Date of Birth" />
-            <DatePicker/>
+            <DatePicker Date="{Binding UserDateOfBirth}"
+                        Format="MM/dd/yyyy"
+                        MinimumDate="01/01/1900"
+                        MaximumDate="{x:Static sys:DateTime.Today}"/>
         </HorizontalStackLayout>
-        
-        <StackLayout Padding="20">
-            <Label Text="Gender" />
-            <RadioButton Content="Male" IsChecked="True" />
-            <RadioButton Content="Female" />
-        </StackLayout>
+
+        <Label Text="Gender" />
+        <HorizontalStackLayout Spacing="15"
+                               RadioButtonGroup.GroupName="GenderSelection"
+                               RadioButtonGroup.SelectedValue="{Binding UserGender}">
+            <RadioButton Content="Male" Value="Male" IsChecked="True" />
+            <RadioButton Content="Female" Value="Female" />
+        </HorizontalStackLayout>
 
         <HorizontalStackLayout>
             <Label Text="Height" />
-            <Entry Placeholder="Feet" Keyboard="Numeric" />
-            <Entry Placeholder="Inches" Keyboard="Numeric" />
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout>
-            <Label Text="Weight" />
-            <Entry Placeholder="180" Keyboard="Numeric" />
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout>
-            <Label Text="Waist" />
-            <Entry Placeholder="32" Keyboard="Numeric" />
+            <Label Text="Feet" FontSize="14" TextColor="Gray" />
+            <Entry Text="{Binding HeightFeet}" 
+                        Keyboard="Numeric" 
+                        Placeholder="ft" 
+                        MaxLength="1" />
+            <Label Text="Inches" FontSize="14" TextColor="Gray" />
+            <Entry Text="{Binding HeightInches}" 
+                        Keyboard="Numeric" 
+                        Placeholder="in" 
+                        MaxLength="2" />
         </HorizontalStackLayout>
 
         <HorizontalStackLayout>
             <Label Text="Activity Level" />
             <Picker Title="Select Activity Level"
                     HorizontalOptions="Fill"
-                    Margin="10">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Very Active</x:String>
-                        <x:String>Active</x:String>
-                        <x:String>Moderate</x:String>
-                        <x:String>Light</x:String>
-                        <x:String>Sedentary</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+                    Margin="10"
+                    ItemsSource="{Binding AvailableActivityLevels}"
+                    SelectedItem="{Binding UserActivityLvl}"
+                    FontSize="16" />
         </HorizontalStackLayout>
 
-        <HorizontalStackLayout>
-            <Label Text="Goal" />
-            <Picker Title="Primary Goal"
-                    HorizontalOptions="Fill"
-                    Margin="10">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Lose Weight</x:String>
-                        <x:String>Maintain Weight</x:String>
-                        <x:String>Gain Weight</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-        </HorizontalStackLayout>
-
-        <Button Text="Submit" />
+        <Button Text="Submit"
+                Command="{ Binding SubmitUserCommand }"/>
 
     </VerticalStackLayout>
 </ContentPage>

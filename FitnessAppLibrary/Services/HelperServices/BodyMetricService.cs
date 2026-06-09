@@ -40,7 +40,7 @@ namespace FitnessAppLibrary.Services.HelperServices
             {
                 tDEE = (int)(bMR * 1.375);
             }
-            else if (user.ActivityLevel == ActivityLvl.ModeratleyActive)
+            else if (user.ActivityLevel == ActivityLvl.ModeratelyActive)
             {
                 tDEE = (int)(bMR * 1.55);
             }

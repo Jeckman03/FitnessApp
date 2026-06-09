@@ -16,6 +16,10 @@
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
 
+        <Tab x:Name="NewUserTab" Title="New User">
+            <ShellContent ContentTemplate="{DataTemplate views:CreateNewUserPage}" />
+        </Tab>
+
         <Tab Title="History">
             <ShellContent ContentTemplate="{DataTemplate views:HistoryPage}" />
         </Tab>

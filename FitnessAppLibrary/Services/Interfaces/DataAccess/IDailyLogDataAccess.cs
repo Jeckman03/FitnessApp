@@ -13,6 +13,8 @@ namespace FitnessAppLibrary.Services.Interfaces.DataAccess
 
         Task<IEnumerable<DailyLogModel>> GetWeighInsByPlanIdAsync(int planId);
 
+        Task<DailyLogModel> GetLastPlanWeighInByIdAsync(int planId);
+
         Task<IEnumerable<DailyLogModel>> GetWeighIsBetweenDates(int planId, DateOnly startDate, DateOnly endDate);
     }
 }

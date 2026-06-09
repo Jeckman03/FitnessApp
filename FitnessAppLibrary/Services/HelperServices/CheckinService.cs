@@ -20,9 +20,9 @@ namespace FitnessAppLibrary.Services.HelperServices
         }
 
         // CHECK THIS!!!!
-        public async Task ProcessWeeklyWeighIn(int planId, double newWeight, bool stuckToMacros)
+        public async Task<PlanModel> CalculateNewCalorieTarget(int planId, double newWeight, bool stuckToMacros)
         {
-            DailyLogModel previousWeight = await _dailyLogDataAccess.GetWeighInByIdAsync(planId);
+            DailyLogModel previousWeight = await _dailyLogDataAccess.GetLastPlanWeighInByIdAsync(planId);
 
             var currentPlan = await _planDataAccess.GetPlanAsync(planId);
 
@@ -60,7 +60,11 @@ namespace FitnessAppLibrary.Services.HelperServices
                         break;
                 }
 
-                await _planDataAccess.SavePlanAsync(currentPlan);
+                return currentPlan;
+            }
+            else
+            {
+                return currentPlan;
             }
         }
     }

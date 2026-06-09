@@ -8,6 +8,8 @@ namespace DataAccessLibrary.SqlStatements
     {
         public static string GetUserInfo => "Select * From Users limit 1";
 
-        public static string SaveUser => "Insert into Users (Name, DateOfBirth, HeightInches, Gender, ActivityLevel) Values (@Name, @DateOfBirth, @HeightInches, @Gender, @ActivityLevel)";
+        public static string GetUserId => "SELECT last_insert_rowid() From Users";
+
+        public static string SaveUser => "Insert into Users (Name, DateOfBirth, HeightInches, Gender, ActivityLevel) Values (@Name, @DateOfBirth, @HeightInches, @Gender, @ActivityLevel); Select last_insert_rowid();";
     }
 }

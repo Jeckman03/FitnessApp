@@ -6,6 +6,6 @@ namespace FitnessAppLibrary.Models.Enums
 {
     public enum Goals
     {
-        Cut, Maintain, Bulk
+        Cut = 0, Maintain = 1, Bulk = 2
     }
 }

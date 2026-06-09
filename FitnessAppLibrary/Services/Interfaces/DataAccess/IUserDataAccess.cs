@@ -7,6 +7,8 @@ namespace FitnessAppLibrary.Services.Interfaces.DataAccess
 {
     public interface IUserDataAccess
     {
+        public Task<int> CreateUserAndGetId(UserModel user);
+
         public Task SaveUserAsync(UserModel user);
 
         public Task<UserModel> GetUserAsync(int id);

@@ -1,4 +1,5 @@
-﻿using FitnessAppLibrary.Models.Enums;
+﻿using FitnessAppLibrary.Models;
+using FitnessAppLibrary.Models.Enums;
 using FitnessAppLibrary.Services.Interfaces;
 using FitnessAppLibrary.Services.Interfaces.DataAccess;
 using System;
@@ -18,47 +19,48 @@ namespace FitnessAppLibrary.Services.HelperServices
             _dailyLogDataAccess = dailyLogDataAccess;
         }
 
-        public async Task ProcessWeeklyWeighIn(int userId, double newWeight, bool stuckToMacros)
+        // CHECK THIS!!!!
+        public async Task ProcessWeeklyWeighIn(int planId, double newWeight, bool stuckToMacros)
         {
-            double previousWeight = await _dailyLogDataAccess.GetMostRecentWeightAsync(userId);
+            DailyLogModel previousWeight = await _dailyLogDataAccess.GetWeighInByIdAsync(planId);
 
-            var currentPlan = await _planDataAccess.GetPlanAsync(userId);
+            var currentPlan = await _planDataAccess.GetPlanAsync(planId);
 
             if (stuckToMacros)
             {
                 switch (currentPlan.Goal)
                 {
                     case Goals.Cut:
-                        if (newWeight >= previousWeight)
+                        if (newWeight >= previousWeight.CurrentWeight)
                         {
                             currentPlan.CurrentCalorieTarget -= 100;
                         }
                         break;
 
                     case Goals.Bulk:
-                        if (newWeight <= previousWeight) 
+                        if (newWeight <= previousWeight.CurrentWeight) 
                         {
                             currentPlan.CurrentCalorieTarget += 100;
                         }
-                        else if (newWeight > previousWeight + 1)
+                        else if (newWeight > previousWeight.CurrentWeight + 1)
                         {
                             currentPlan.CurrentCalorieTarget = currentPlan.CurrentCalorieTarget;
                         }
                         break;
 
                     case Goals.Maintain:
-                        if (newWeight > previousWeight + 2)
+                        if (newWeight > previousWeight.CurrentWeight + 2)
                         {
                             currentPlan.CurrentCalorieTarget -= 50;
                         }
-                        else if (newWeight < previousWeight -2)
+                        else if (newWeight < previousWeight.CurrentWeight -2)
                         {
                             currentPlan.CurrentCalorieTarget += 50;
                         }
                         break;
                 }
 
-                await _planDataAccess.UpdatePlanAsync(currentPlan);
+                await _planDataAccess.SavePlanAsync(currentPlan);
             }
         }
     }

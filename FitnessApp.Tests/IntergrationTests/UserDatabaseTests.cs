@@ -1,7 +1,10 @@
 ﻿using DataAccessLibrary.Services;
 using DataAccessLibrary.Sqllite;
 using FitnessAppLibrary.Models;
+using FitnessAppLibrary.Models.Enums;
+using FitnessAppLibrary.Services.Interfaces.DataAccess;
 using Microsoft.Data.Sqlite;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,44 +14,62 @@ namespace FitnessApp.Tests.IntergrationTests
 {
     public class UserDatabaseTests
     {
-        private const string TestDbName = "TestFitness.db";
-        private string _connectionString = $"Data Source={TestDbName}";
-
-        public void Dispose()
+        [Fact]
+        public async Task SaveUserAsync_ShoulCreateUserAndReturnUserId()
         {
-            if (File.Exists(TestDbName))
+            var mockDb = new Mock<IDataAccess>();
+
+            var expectedUser = new UserModel
             {
-                File.Delete(TestDbName);
-            }
+                Name = "Test",
+                HeightInches = 73,
+                ActivityLevel = ActivityLvl.LightlyActive,
+                DateOfBirth = new DateOnly(1984, 3, 20),
+                Gender = Gender.Male
+            };
+
+            mockDb.Setup(db => db.LoadDataAsync<UserModel, object>(
+                It.IsAny<string>(),
+                It.IsAny<object>())).ReturnsAsync(new List<UserModel> { expectedUser });
+
+            var userService = new UserDataAccess(mockDb.Object);
+
+            var userId = await userService.CreateUserAndGetId(expectedUser);
+
+            Assert.Equal(0, userId );
+
         }
 
         [Fact]
-        public async Task SaveUser_ShouldReadBackCorrectData()
+        public async Task SaveUserAsync_ShouldCreateUserAndReturnUser()
         {
-            var dataAccess = new SqLiteDataAccess(_connectionString);
-            await dataAccess.InitializeDatabase();
+            var mockDb = new Mock<IDataAccess>();
 
-            var testUser = new UserModel
+            var expectedUser = new UserModel
             {
-                Id = 1,
-                Name = "Jeffrey",
-                DateOfBirth = new DateOnly(1984, 03, 20),
-                Gender = Gender.Male,
-                ActivityLevel = ActivityLvl.VeryActive,
-                HeightInches = 37
+                Name = "Test",
+                HeightInches = 73,
+                ActivityLevel = ActivityLvl.LightlyActive,
+                DateOfBirth = new DateOnly(1984, 3, 20),
+                Gender = Gender.Male
             };
 
-            UserDataAccess userProfile = new(dataAccess);
+            mockDb.Setup(db => db.LoadDataAsync<UserModel, object>(
+                It.IsAny<string>(),
+                It.IsAny<object>())).ReturnsAsync(new List<UserModel> { expectedUser });
 
-            await userProfile.SaveUserAsync(testUser);
-            var result = await userProfile.GetUserAsync(testUser.Id);
+            var userService = new UserDataAccess(mockDb.Object);
 
+            var userId = await userService.CreateUserAndGetId(expectedUser);
+            var user = await userService.GetUserAsync(userId);
 
-            Assert.NotNull(result);
-            Assert.Equal(testUser.Name, result.Name);
-            Assert.Equal(37, result.HeightInches);
-            Assert.Equal(testUser.DateOfBirth, result.DateOfBirth);
-            Assert.Equal(testUser.ActivityLevel, result.ActivityLevel);
+            Assert.Equal(0, userId);
+            Assert.NotNull(user);
+            Assert.Equal("Test", user.Name);
+            Assert.Equal(73, user.HeightInches);
+            Assert.Equal(Gender.Male, user.Gender);
+            Assert.Equal(ActivityLvl.LightlyActive, user.ActivityLevel);
+            Assert.Equal(new DateOnly(1984, 3, 20), user.DateOfBirth);
         }
     }
 }

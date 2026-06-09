@@ -7,8 +7,10 @@ namespace FitnessAppLibrary.Services.Interfaces.DataAccess
 {
     public interface IPlanDataAccess
     {
+        Task<int> CreatePlanAndGetIdAsync(PlanModel plan);
+
         Task<PlanModel> GetPlanAsync(int userId);
 
-        Task UpdatePlanAsync(PlanModel currentPlan);
+        Task SavePlanAsync(PlanModel currentPlan);
     }
 }

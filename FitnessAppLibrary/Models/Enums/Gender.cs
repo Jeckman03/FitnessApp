@@ -6,6 +6,6 @@ namespace FitnessAppLibrary.Models.Enums
 {
     public enum Gender
     {
-        Male, Female
+        Male = 0, Female = 1
     }
 }

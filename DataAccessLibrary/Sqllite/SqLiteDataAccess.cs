@@ -32,10 +32,17 @@ namespace DataAccessLibrary.Sqllite
             return await connection.QueryAsync<T>(sql, parameters);
         }
 
+        public async Task<int> SaveDataAndGetIdAsync<T>(string sql, T parameters)
+        {
+            using IDbConnection connection = new SqliteConnection(_connectionString);
+            return await connection.ExecuteScalarAsync<int>(sql, parameters);
+        }
+
         public async Task SaveDataAsync<T>(string sql, T parameters)
         {
             using IDbConnection connection = new SqliteConnection(_connectionString);
             await connection.ExecuteAsync(sql, parameters);
+
         }
     }
 }

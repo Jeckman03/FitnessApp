@@ -9,6 +9,7 @@ namespace FitnessApp
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(WeighinPopupPage), typeof(WeighinPopupPage));
+            Routing.RegisterRoute(nameof(CreatePlanPage), typeof(CreatePlanPage));
         }
     }
 }

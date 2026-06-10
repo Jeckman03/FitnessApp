@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:FitnessApp.ViewModels"
+             x:Class="FitnessApp.Views.CreatePlanPage"
+             Title="CreatePlanPage">
+    <VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Goal" />
+            <Picker Title="Select your goal"
+                    HorizontalOptions="Fill"
+                    Margin="10"
+                    ItemsSource="{Binding AvailableGoals}"
+                    SelectedItem="{ Binding Goal}"
+                    FontSize="16" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Target Weight" />
+            <Entry Text="{Binding TargetWeight}" 
+                   Keyboard="Numeric"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Current Weight" />
+            <Entry Text="{Binding CurrentWeight}"
+                   Keyboard="Numeric" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <Label Text="Current Waist" />
+            <Entry Text="{Binding CurrentWaist}"
+                   Keyboard="Numeric" />
+        </HorizontalStackLayout>
+
+        <Button Text="Start My Journey" 
+                Command="{Binding CreatePlanCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

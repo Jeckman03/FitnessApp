@@ -21,17 +21,18 @@ namespace DataAccessLibrary.SqlStatements
                 StartDate Text,
                 DurationDays Integer,
                 Goal Integer,
-                CurrentCalorieTarget Integer); 
+                CurrentCalorieTarget Integer,
+                TargetWeight Real); 
 
             Create Table if not Exists DailyLogs (
                 Id Integer Primary Key AutoIncrement,
                 PlanId Integer,
                 LogDate Text,
-                Fat Integer,
-                Carbs Integer,
-                Protien Integer,
+                FatGrams Integer,
+                CarbGrams Integer,
+                ProteinGrams Integer,
                 CurrentWeight Real,
-                Waits Real,
+                Waist Real,
                 MetMacros Boolean,
                 WorkedOut Boolean);";
     }

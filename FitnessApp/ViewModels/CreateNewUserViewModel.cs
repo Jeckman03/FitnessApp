@@ -65,7 +65,12 @@ namespace FitnessApp.ViewModels
                 ActivityLevel = GetTranslatedActivityLevel()
             };
 
-            await _userProfileService.SaveUserAsync(createdUser);
+            var navigationParameters = new Dictionary<string, object>
+            {
+                { "NewUser", createdUser }
+            };
+
+            await Shell.Current.GoToAsync("CreatePlanPage", navigationParameters);
         }
 
         private ActivityLvl GetTranslatedActivityLevel()

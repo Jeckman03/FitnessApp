@@ -40,6 +40,7 @@ namespace FitnessApp
             builder.Services.AddTransient<WorkoutPage>();
             builder.Services.AddTransient<WeighinPopupPage>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<CreatePlanPage>();
 
             // ViewModels
             builder.Services.AddTransient<MainPageViewModel>();
@@ -48,6 +49,7 @@ namespace FitnessApp
             builder.Services.AddTransient<WorkoutViewModel>();
             builder.Services.AddTransient<WeighinPopupViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<CreatePlanViewModel>();
 
             // Services
             builder.Services.AddSingleton<SqLiteDataAccess>(s => new SqLiteDataAccess(connectionString));
@@ -57,9 +59,10 @@ namespace FitnessApp
             builder.Services.AddTransient<IBodyMetricService, BodyMetricService>();
             builder.Services.AddTransient<IUnitConversionSerivce, UnitConversionService>();
             builder.Services.AddTransient<IMacroCalculatorService, MacroCalculatorService>();
-            builder.Services.AddTransient<ICheckinService, CheckinService>();
+            builder.Services.AddTransient<IDailyLogService, DailyLogService>();
             builder.Services.AddTransient<IDailyLogDataAccess, DailyLogDataAccess>();
             builder.Services.AddTransient<IPlanDataAccess, PlanDataAccess>();
+            builder.Services.AddTransient<IPlanTrackingService, PlanTrackingService>();
 
 
             // DB

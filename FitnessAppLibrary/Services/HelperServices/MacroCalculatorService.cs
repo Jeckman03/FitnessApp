@@ -8,15 +8,7 @@ namespace FitnessAppLibrary.Services.HelperServices
 {
     public class MacroCalculatorService : IMacroCalculatorService
     {
-        public int CalculateInitialCalorieTarget(int baseTdee, string goal)
-        {
-            int startingCalories = baseTdee;
-
-            if (goal.ToLower() == "cut") startingCalories -= 500;
-            if (goal.ToLower() == "bulk") startingCalories += 500;
-
-            return startingCalories;
-        }
+        
 
         public MacroTarget CalculateDailyMacros(int currentCalorieTarget, double weightPounds)
         {

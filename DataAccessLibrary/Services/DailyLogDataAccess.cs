@@ -15,18 +15,18 @@ namespace DataAccessLibrary.Services
             _db = db;
         }
 
-        public async Task<int> CreateWeighInAndReturnWeighInId(DailyLogModel dailyLog)
+        public async Task<int> CreateWeighInAndReturnWeighInIdAsync(DailyLogModel dailyLog)
         {
-            var sql = "Insert into DailyLogs (PlanId, LogDate, Fat, Carbs, Protien, CurrentWeight, Waist, MetMacros, WorkedOut) Values (@PlanId, @LogDate, @Fat, @Carbs, @Protien, @CurrentWeight, @Waist, @MetMacros, @WorkedOut)";
+            var sql = "Insert into DailyLogs (PlanId, LogDate, FatGrams, CarbGrams, ProteinGrams, CurrentWeight, Waist, MetMacros, WorkedOut) Values (@PlanId, @LogDate, @FatGrams, @CarbGrams, @ProteinGrams, @CurrentWeight, @Waist, @MetMacros, @WorkedOut)";
 
             var logId = await _db.SaveDataAndGetIdAsync(sql, dailyLog);
 
             return logId;
         }
 
-        public async Task SaveWeighIn(DailyLogModel dailyLog)
+        public async Task SaveWeighInAsync(DailyLogModel dailyLog)
         {
-            var sql = "Insert into DailyLogs (PlanId, LogDate, Fat, Carbs, Protien, CurrentWeight, Waist, MetMacros, WorkedOut) Values (@PlanId, @LogDate, @Fat, @Carbs, @Protien, @CurrentWeight, @Waist, @MetMacros, @WorkedOut)";
+            var sql = "Insert into DailyLogs (PlanId, LogDate, FatGrams, CarbGrams, ProteinGrams, CurrentWeight, Waist, MetMacros, WorkedOut) Values (@PlanId, @LogDate, @FatGrams, @CarbGrams, @ProteinGrams, @CurrentWeight, @Waist, @MetMacros, @WorkedOut)";
 
             await _db.SaveDataAsync(sql, dailyLog);
         }
@@ -41,7 +41,7 @@ namespace DataAccessLibrary.Services
             return recentWeighIns;
         }
 
-        public async Task<IEnumerable<DailyLogModel>> GetWeighIsBetweenDates(int planId, DateOnly startDate, DateOnly endDate)
+        public async Task<IEnumerable<DailyLogModel>> GetWeighInsBetweenDatesAsync(int planId, DateOnly startDate, DateOnly endDate)
         {
             var sql = @"Select * From DailyLogs
                         Where PlanId = @PlanId

@@ -7,7 +7,7 @@ namespace FitnessAppLibrary.Services.Interfaces
 {
     public interface IMacroCalculatorService
     {
-        int CalculateInitialCalorieTarget(int baseTdee, string goal);
+        
 
         MacroTarget CalculateDailyMacros(int currentCalorieTarget, double weightPounds);
     }

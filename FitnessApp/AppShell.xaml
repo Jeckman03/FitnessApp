@@ -12,7 +12,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:WorkoutPage}" />
         </Tab>
         
-        <Tab x:Name="HomeTab" Title="Home">
+        <Tab x:Name="HomeTab" Title="Home" Route="HomeTab">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
 

@@ -18,6 +18,16 @@ namespace FitnessAppLibrary.Services.HelperServices
             _unitConversionSerivce = unitConversionSerivce;
         }
 
+        public async Task<int> CrreateUserAndReturnIdAsync(UserModel user)
+        {
+            if (user == null) throw new Exception("User parameter is null");
+            if (user.Age < 1) throw new Exception("Age is less than one");
+
+            int userId = await _userDataAccess.CreateUserAndGetId(user);
+
+            return userId;
+        }
+
         public async Task<UserModel> GetUserAsync(int id)
         {
             return await _userDataAccess.GetUserAsync(id);

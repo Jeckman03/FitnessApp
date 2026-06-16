@@ -66,5 +66,17 @@ namespace DataAccessLibrary.Services
 
             return lastWeighIn.FirstOrDefault();
         }
+
+        public async Task<DailyLogModel> GetFirstWeighInAsync(int planId)
+        {
+            var sql = @"Select * From DailyLogs
+                        Where PlanId = @PlanId
+                        Order By LogDate ASC
+                        Limit 1";
+
+            var firstWeighIn = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { Id = planId});
+
+            return firstWeighIn.FirstOrDefault();
+        }
     }
 }

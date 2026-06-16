@@ -11,6 +11,7 @@ namespace FitnessAppLibrary.Models
         public DateOnly StartDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public int DurationDays { get; set; } = 1;
         public Goals Goal { get; set; }
+        public int MaintenanceTDEE { get; set; }
         public int CurrentCalorieTarget { get; set; }
         public double TargetWeight { get; set; }
     }

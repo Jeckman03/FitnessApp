@@ -21,6 +21,7 @@ namespace DataAccessLibrary.SqlStatements
                 StartDate Text,
                 DurationDays Integer,
                 Goal Integer,
+                MaintenanceTDEE Integer,
                 CurrentCalorieTarget Integer,
                 TargetWeight Real); 
 

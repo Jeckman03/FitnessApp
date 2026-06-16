@@ -95,9 +95,16 @@ namespace FitnessAppLibrary.Services.HelperServices
             return dailyLogId;
         }
 
-        public async Task<DailyLogModel> GetLastWeighInByPlanIdAsync(PlanModel planId)
+        public async Task<DailyLogModel> GetFirstWeighInByPlanIdAsync(int planId)
         {
-            var dailyLog = await _dailyLogDataAccess.GetLastPlanWeighInByIdAsync(planId.Id);
+            var firstWeighIn = await _dailyLogDataAccess.GetFirstWeighInAsync(planId);
+
+            return firstWeighIn;
+        }
+
+        public async Task<DailyLogModel> GetLastWeighInByPlanIdAsync(int planId)
+        {
+            var dailyLog = await _dailyLogDataAccess.GetLastPlanWeighInByIdAsync(planId);
 
             return dailyLog;
         }

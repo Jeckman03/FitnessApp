@@ -25,7 +25,7 @@ namespace FitnessAppLibrary.Services.HelperServices
             _bodyMetricService = bodyMetricService;
         }
 
-        public async Task FinalizeOnboardingAsync(UserModel newUser, Goals goal, double targetWeight, double currentWeight, double currentWaist)
+        public async Task<int> FinalizeOnboardingAsync(UserModel newUser, Goals goal, double targetWeight, double currentWeight, double currentWaist)
         {
             int userId = await _userDataAccess.CreateUserAndGetId(newUser);
 
@@ -60,6 +60,8 @@ namespace FitnessAppLibrary.Services.HelperServices
             };
 
             await _dailyLogService.SaveDailyLogAsync(initialDailyLog);
+
+            return userId;
         }
 
 
@@ -78,9 +80,11 @@ namespace FitnessAppLibrary.Services.HelperServices
             throw new NotImplementedException();
         }
 
-        public Task<PlanModel> GetPlanByIdAsync(int id)
+        public async Task<PlanModel> GetPlanByUserIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var plan = await _planDataAccess.GetPlanAsync(id);
+
+            return plan;
         }
     }
 }

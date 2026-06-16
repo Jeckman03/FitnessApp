@@ -15,7 +15,9 @@ namespace FitnessAppLibrary.Services.Interfaces
 
         Task<int> CreateDailyLogAndReturnIdAsync(DailyLogModel dailyLog);
 
-        Task<DailyLogModel> GetLastWeighInByPlanIdAsync(PlanModel planId);
+        Task<DailyLogModel> GetFirstWeighInByPlanIdAsync(int planId);
+
+        Task<DailyLogModel> GetLastWeighInByPlanIdAsync(int planId);
 
         Task SaveDailyLogAsync(DailyLogModel model);
 

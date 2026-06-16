@@ -8,7 +8,7 @@ namespace FitnessAppLibrary.Models
     public class PlanModel : BaseModel
     {
         public int UserId { get; set; }
-        public DateOnly StartDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly StartDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
         public int DurationDays { get; set; } = 1;
         public Goals Goal { get; set; }
         public int MaintenanceTDEE { get; set; }

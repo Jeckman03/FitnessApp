@@ -37,6 +37,7 @@ namespace FitnessAppLibrary.Services.HelperServices
             {
                 UserId = userId,
                 Goal = goal,
+                MaintenanceTDEE = tDEE,
                 TargetWeight = targetWeight,
                 CurrentCalorieTarget = startingTdee,
                 StartDate = DateOnly.FromDateTime(DateTime.Today)

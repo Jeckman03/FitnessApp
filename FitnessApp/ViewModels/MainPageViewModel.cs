@@ -15,7 +15,6 @@ namespace FitnessApp.ViewModels
         private IPopupService _popupServices;
         private readonly IPlanTrackingService _planTracking;
         private readonly IDailyLogService _dailyLogService;
-        private readonly IUserProfileService _userProfileService;
 
         [ObservableProperty] private double _startingWeight;
         [ObservableProperty] private double _currentWeight;
@@ -28,6 +27,7 @@ namespace FitnessApp.ViewModels
         [ObservableProperty] private int _proteinGrams;
         [ObservableProperty] private double _currentWaist;
         [ObservableProperty] private double _waistInchesLost;
+        [ObservableProperty] private bool _isAssessmentDayVisible;
 
         public MainPageViewModel(IPopupService popupServices, IPlanTrackingService planTracking, IDailyLogService dailyLogService) 
         {
@@ -46,7 +46,6 @@ namespace FitnessApp.ViewModels
                 return;
             }
 
-            var currentUser = await _userProfileService.GetUserAsync(userId);
             var activePlan = await _planTracking.GetPlanByUserIdAsync(userId);
             if (activePlan == null) return;
 
@@ -67,6 +66,25 @@ namespace FitnessApp.ViewModels
                 ProteinGrams = latestLog.ProteinGrams;
                 CurrentWaist = latestLog.Waist;
                 WaistInchesLost = Math.Round(firstLog.Waist - latestLog.Waist, 1);
+
+                CheckIfAssessmentDay(activePlan.StartDate);
+            }
+        }
+
+        private void CheckIfAssessmentDay(DateOnly planStartDate)
+        {
+            DateTime start = planStartDate.ToDateTime(TimeOnly.MinValue);
+            DateTime today = DateTime.Today;
+
+            int daysOnPlan = (today - start).Days;
+
+            if (daysOnPlan > 0 && daysOnPlan % 7 == 0)
+            {
+                IsAssessmentDayVisible = true;
+            }
+            else
+            {
+                IsAssessmentDayVisible = false;
             }
         }
 

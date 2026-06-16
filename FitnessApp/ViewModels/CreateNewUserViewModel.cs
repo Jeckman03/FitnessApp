@@ -51,18 +51,27 @@ namespace FitnessApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task SubmitUser(UserModel newUser)
+        private async Task SubmitUser()
         {
             TotalInches = _unitConversionSerivce.ConvertFeetAndInchesToInches(_heightFeet, _heightInches);
             var dateOnlyDOB = DateOnly.FromDateTime(UserDateOfBirth);
 
+            //var createdUser = new UserModel
+            //{
+            //    Name = UserName,
+            //    DateOfBirth = dateOnlyDOB,
+            //    HeightInches = TotalInches,
+            //    Gender = GetTranslatedGender(),
+            //    ActivityLevel = GetTranslatedActivityLevel()
+            //};
+
             var createdUser = new UserModel
             {
-                Name = UserName,
-                DateOfBirth = dateOnlyDOB,
-                HeightInches = TotalInches,
-                Gender = GetTranslatedGender(),
-                ActivityLevel = GetTranslatedActivityLevel()
+                Name = "Jeff",
+                DateOfBirth = new DateOnly(1984, 03, 20),
+                HeightInches = 73,
+                Gender = Gender.Male,
+                ActivityLevel = ActivityLvl.VeryActive
             };
 
             var navigationParameters = new Dictionary<string, object>

@@ -20,40 +20,30 @@ namespace FitnessAppLibrary.Services.HelperServices
 
         public int CalculateTDEE(UserModel user, double weight)
         {
-            double bMR = 0;
-            int tDEE = 0;
+            double weightKg = weight / 2.20462;
+            double heightCm = user.HeightInches * 2.54;
+
+            double bMR = (10 * weightKg) + (6.25 * heightCm) - (5 * user.Age);
 
             if (user.Gender == Gender.Male)
             {
-                bMR = (13.7 * weight) + (5 * user.HeightInches) - (6.8 * user.Age) + 66;
+                bMR += 5;
             }
             else
             {
-                bMR = (9.6 * weight) + (1.8 * user.HeightInches) - (4.7 * user.Age) - 161;
+                bMR -= 161;
             }
 
-            if (user.ActivityLevel == ActivityLvl.Sedentary)
+            double activityMultiplier = user.ActivityLevel switch
             {
-                tDEE = (int)(bMR * 1.2);
-            }
-            else if (user.ActivityLevel == ActivityLvl.LightlyActive)
-            {
-                tDEE = (int)(bMR * 1.375);
-            }
-            else if (user.ActivityLevel == ActivityLvl.ModeratelyActive)
-            {
-                tDEE = (int)(bMR * 1.55);
-            }
-            else if (user.ActivityLevel == ActivityLvl.VeryActive)
-            {
-                tDEE = (int)(bMR * 1.725);
-            }
-            else
-            {
-                tDEE = (int)(bMR * 1.9);
-            }
+                ActivityLvl.Sedentary => 1.2,
+                ActivityLvl.LightlyActive => 1.375,
+                ActivityLvl.ModeratelyActive => 1.55,
+                ActivityLvl.VeryActive => 1.725,
+                _ => 1.9
+            };
 
-            return tDEE; 
+            return (int)(bMR * activityMultiplier); 
         }
     }
 }

@@ -36,7 +36,7 @@ namespace DataAccessLibrary.Services
             var sql = @"Select * From DailyLog
                         Where PlanId = @PlanId";
 
-            var recentWeighIns = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { Id = planId });
+            var recentWeighIns = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { PlanId = planId });
 
             return recentWeighIns;
         }
@@ -57,12 +57,12 @@ namespace DataAccessLibrary.Services
 
         public async Task<DailyLogModel> GetLastPlanWeighInByIdAsync(int planId)
         {
-            var sql = @"Select * From DailyLog
+            var sql = @"Select * From DailyLogs
                         Where PlanId = @PlanId
                         Order By LogDate DESC
                         Limit 1";
 
-            var lastWeighIn = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { Id = planId});
+            var lastWeighIn = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { PlanId = planId});
 
             return lastWeighIn.FirstOrDefault();
         }
@@ -74,7 +74,7 @@ namespace DataAccessLibrary.Services
                         Order By LogDate ASC
                         Limit 1";
 
-            var firstWeighIn = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { Id = planId});
+            var firstWeighIn = await _db.LoadDataAsync<DailyLogModel, object>(sql, new { PlanId = planId});
 
             return firstWeighIn.FirstOrDefault();
         }

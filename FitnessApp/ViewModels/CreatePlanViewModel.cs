@@ -48,7 +48,9 @@ namespace FitnessApp.ViewModels
         [RelayCommand]
         private async Task CreatePlan()
         {
-            int userId = await _planTrackingService.FinalizeOnboardingAsync(IncomingUser, GetTranslatedGoals(), TargetWeight, CurrentWeight, CurrentWaist);
+            //int userId = await _planTrackingService.FinalizeOnboardingAsync(IncomingUser, GetTranslatedGoals(), TargetWeight, CurrentWeight, CurrentWaist);
+
+            int userId = await _planTrackingService.FinalizeOnboardingAsync(IncomingUser, GetTranslatedGoals(), 199, 212, 36.5);
 
             Preferences.Default.Set("ActiveUserId", userId);
 

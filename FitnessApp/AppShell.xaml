@@ -17,7 +17,8 @@
         </Tab>
 
         <Tab x:Name="NewUserTab" Title="New User">
-            <ShellContent ContentTemplate="{DataTemplate views:CreateNewUserPage}" />
+            <ShellContent Route="CreateNewUserPage" 
+                          ContentTemplate="{DataTemplate views:CreateNewUserPage}" />
         </Tab>
 
         <Tab Title="History">

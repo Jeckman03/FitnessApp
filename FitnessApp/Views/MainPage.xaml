@@ -53,19 +53,19 @@
 
                 <Label Grid.Row="2"
                Grid.Column="0"
-               Text="220"
+               Text="{Binding StartingWeight}"
                HorizontalTextAlignment="Center"
                Margin="10"/>
 
                 <Label Grid.Row="2"
                Grid.Column="1"
-               Text="210"
+               Text="{Binding CurrentWeight}"
                HorizontalTextAlignment="Center"
                Margin="10"/>
 
                 <Label Grid.Row="2"
                Grid.Column="2"
-               Text="10"
+               Text="{Binding WeightLost}"
                HorizontalTextAlignment="Center"
                Margin="10"/>
 
@@ -102,19 +102,19 @@
 
             <Label Grid.Row="1"
                    Grid.Column="0"
-                   Text="2400"
+                   Text="{Binding MaintenanceTDEE}"
                    Margin="10"
                    HorizontalTextAlignment="Center" />
 
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="2100"
+                   Text="{Binding CurrentCalories}"
                    Margin="10"
                    HorizontalTextAlignment="Center" />
 
             <Label Grid.Row="1"
                    Grid.Column="2"
-                   Text="500"
+                   Text="{Binding CurrentDeficit}"
                    Margin="10"
                    HorizontalTextAlignment="Center" />
 
@@ -153,25 +153,19 @@
                        HorizontalTextAlignment="Center"
                        Margin="10"/>
 
-                <Label Grid.Row="1"
-                       Grid.Column="2"
-                       Text="Protien"
-                       HorizontalTextAlignment="Center"
-                       Margin="10"/>
-
                 <Label Grid.Row="2"
                        Grid.Column="0"
-                       Text="56"
+                       Text="{Binding FatGrams}"
                        HorizontalTextAlignment="Center"
                        Margin="10"/>
                 <Label Grid.Row="2"
                        Grid.Column="1"
-                       Text="234"
+                       Text="{Binding CarbGrams}"
                        HorizontalTextAlignment="Center"
                        Margin="10"/>
                 <Label Grid.Row="2"
                        Grid.Column="2"
-                       Text="200"
+                       Text="{Binding ProteinGrams}"
                        HorizontalTextAlignment="Center"
                        Margin="10"/>
 
@@ -188,7 +182,7 @@
                   HorizontalOptions="Center">
                 <Label Grid.Row="0"
                        Grid.ColumnSpan="2"
-                       Text="Waist"
+                       Text="Waist Inches"
                        FontSize="20"
                        FontAttributes="Bold"
                        HorizontalTextAlignment="Center"
@@ -208,13 +202,13 @@
 
                 <Label Grid.Row="2"
                        Grid.Column="0"
-                       Text="40 in"
+                       Text="{Binding CurrentWaist}"
                        HorizontalTextAlignment="Center"
                        Margin="10"/>
 
                 <Label Grid.Row="2"
                        Grid.Column="1"
-                       Text="2 in"
+                       Text="{Binding WaistInchesLost}"
                        HorizontalTextAlignment="Center"
                        Margin="10"/>
             </Grid>

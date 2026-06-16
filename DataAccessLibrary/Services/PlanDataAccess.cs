@@ -18,7 +18,7 @@ namespace DataAccessLibrary.Services
 
         public async Task<int> CreatePlanAndGetIdAsync(PlanModel plan)
         {
-            var sql = "Insert into Plans (UserId, StartDate, DurationDays, Goal, CurrentCalorieTarget) Values (@UserId, @StartDate, @DurationDays, @Goal, @CurrentCalorieTarget)";
+            var sql = "Insert into Plans (UserId, StartDate, DurationDays, Goal, MaintenanceTDEE, CurrentCalorieTarget) Values (@UserId, @StartDate, @DurationDays, @Goal, @MaintenanceTDEE, @CurrentCalorieTarget); Select last_insert_rowid();";
 
             int newPlanId = await _dataAccess.SaveDataAndGetIdAsync(sql, plan);
 
@@ -36,7 +36,7 @@ namespace DataAccessLibrary.Services
 
         public async Task SavePlanAsync(PlanModel currentPlan)
         {
-            var sql = "Insert into Plans (UserId, StartDate, DurationDays, Goal, CurrentCalorieTarget) Values (@UserId, @StartDate, @DurationDays, @Goal, @CurrentCalorieTarget)";
+            var sql = "Insert into Plans (UserId, StartDate, DurationDays, Goal, MaintenanceTDEE, CurrentCalorieTarget) Values (@UserId, @StartDate, @DurationDays, @Goal, @MaintenanceTDEE, @CurrentCalorieTarget)";
 
             await _dataAccess.SaveDataAsync<PlanModel>(sql, currentPlan);
         }

@@ -69,22 +69,21 @@ namespace FitnessAppLibrary.Services.HelperServices
 
         public int CalculateStartingCalories(int tdee, Goals goal)
         {
-            int targetTdee = 0;
 
             if (goal == Goals.Cut)
             {
-                targetTdee -= 500;
+                tdee -= 500;
             }
             else if (goal == Goals.Bulk)
             {
-                targetTdee += 200;
+                tdee += 200;
             }
             else
             {
-                targetTdee = tdee;
+                tdee = tdee;
             }
 
-            return targetTdee;
+            return tdee;
 
         }
 
